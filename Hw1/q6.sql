@@ -1,13 +1,13 @@
 -- .header on
 
-/* Think in Set, Not Procedures */
+/* Think in Sets, Not Procedures */
 SELECT pname, CompanyName, ContactName
 FROM(
     SELECT pname, MIN(OrderDate), Customer.CompanyName, Customer.ContactName
     FROM(
         SELECT Id AS pid, ProductName AS pname
         FROM Product
-        WHERE Discontinued != 0
+        WHERE Discontinued = 1
         )
     INNER JOIN OrderDetail ON OrderDetail.ProductId = pid
     INNER JOIN Orders ON Orders.Id = OrderDetail.OrderId
